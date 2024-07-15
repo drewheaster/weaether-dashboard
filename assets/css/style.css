@@ -5,6 +5,7 @@
     --white: #ffffff;
     --grey: #9b9ea5;
     --light-grey: #fbfbfb;
+    --aside-grey: #fefefe;
     --light-blue: #8cb1fc;
 }
 
@@ -21,8 +22,12 @@ body {
     width: 70%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
+
+/* Header styling */
 .main-header {
     width: 100%;
     height: 15%;
@@ -98,6 +103,178 @@ body {
     font-family: var(--font);
 }
 
+/* Main page "Today" styling */
+.today-overview-container {
+    height: 40%;
+    width: 70%;
+    margin-top: 2rem;
+}
+
+.today-title {
+    font-size: 130%;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.infocard-container {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-column {
+    width: 48%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.infocard {
+    width: 100%;
+    height: 45%;
+    background-color: var(--light-grey);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 1rem;
+}
+
+.weather-icons {
+    font-size: 200%;
+    color: var(--primary);
+}
+
+.card-details {
+    height: 60%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-evenly;
+}
+
+.card-title {
+    color: var(--grey);
+}
+
+#wind-speed {
+    color: var(--secondary);
+    font-size: 200%;
+    font-weight: 800;
+}
+
+#humidity {
+    color: var(--secondary);
+    font-size: 200%;
+    font-weight: 800;
+}
+
+#rain-chance {
+    color: var(--secondary);
+    font-size: 200%;
+    font-weight: 800;
+}
+
+#uv-index {
+    color: var(--secondary);
+    font-size: 200%;
+    font-weight: 800;
+}
+
+
+/* 5-day forecast section styling */
+.forecast-container {
+    height: 40%;
+    width: 70%;
+}
+
+.forecast-title {
+    font-size: 130%;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.forecast-cards-container {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.forecast-card {
+    width: 18%;
+    height: 90%;
+    background-color: var(--light-grey);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.card-calendar-date{
+    color: var(--grey);
+}
+
+.card-icon-container {
+    height: fit-content;
+    width: fit-content;
+}
+
+.card-temp-details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: var(--primary);
+}
+
+.card-temp {
+    font-size: 200%;
+    height: fit-content;
+    width: fit-content;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.forecast-card-divider {
+    height: 2px;
+    width: 80%;
+    border-radius: 2px;
+    background-color: rgb(224, 224, 224);
+}
+
+.card-info-details {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: var(--grey);
+}
+
+.card-info {
+    font-size: 120%;
+    height: fit-content;
+    width: fit-content;
+    font-weight: 400;
+    color: var(--secondary);
+}
+
+
+
+
+
+
+
 
 
 
@@ -107,4 +284,58 @@ body {
     width: 30%;
     background: rgb(66,82,109);
     background: linear-gradient(127deg, rgba(66,82,109,1) 0%, rgb(28, 49, 97) 47%, rgba(32,56,125,1) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.today-data-header {
+    width: 85%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--aside-grey);
+}
+
+.area-title {
+    font-size: 200%;
+    font-weight: 600;
+}
+
+.current-time {
+    font-size: 150%;
+    font-weight: 400;
+}
+
+
+
+.current-weather-container {
+    width: 85%;
+    height: 20%;
+    color: var(--aside-grey);
+}
+
+.current-weather-divider {
+    height: 1px;
+    width: 85%;
+    background-color: var(--aside-grey);
+}
+
+.chance-of-rain-container {
+    margin-top: 2rem;
+    font-size: 130%;
+    font-weight: 500;
+    height: 35%;
+    width: 85%;
+    color: var(--aside-grey);
+}
+
+.sunrise-sunset-container {
+    font-size: 130%;
+    font-weight: 500;
+    height: 25%;
+    width: 85%;
+    color: var(--aside-grey);
 }
