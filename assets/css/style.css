@@ -210,7 +210,7 @@ body {
 
 .forecast-card {
     width: 18%;
-    height: 90%;
+    height: 80%;
     background-color: var(--light-grey);
     border-radius: 1rem;
     display: flex;
