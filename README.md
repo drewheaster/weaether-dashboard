@@ -1,1 +1,1 @@
-# weaether-dashboard
+# Weather Dashboard
