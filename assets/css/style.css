@@ -1,0 +1,110 @@
+:root {
+    --font: 'Poppins';
+    --primary: #4164fd;
+    --secondary: #192a4a;
+    --white: #ffffff;
+    --grey: #9b9ea5;
+    --light-grey: #fbfbfb;
+    --light-blue: #8cb1fc;
+}
+
+body {
+    height: 100svh;
+    width: 100svw;
+    display: flex;
+    flex-direction: row;
+    font-family: var(--font);
+}
+
+.main-container {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header {
+    width: 100%;
+    height: 15%;
+    border-bottom: 2px var(--light-grey) solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.logo-container {
+    height: 40%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.logo-title {
+    color: var(--primary);
+    font-size: 200%;
+    font-weight: 700;
+}
+
+.date-container {
+    height: 40%;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+.calendar-date {
+    font-size: 150%;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.day-of-week {
+    color: var(--grey);
+}
+
+.search-input-container {
+    height: 40%;
+    width: 30%;
+    background-color: var(--light-grey);
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.fa-magnifying-glass {
+    color: var(--grey);
+    font-size: 150%;
+    width: 25px;
+    height: 25px;
+}
+
+.city-input {
+    font-family: var(--font);
+    height: 60%;
+    width: 80%;
+    color: var(--grey);
+    border: none;
+    background-color: var(--light-grey);
+}
+
+.city-input:focus {
+    outline: none;
+}
+
+.city-input::placeholder {
+    font-family: var(--font);
+}
+
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.today-data-container {
+    height: 100%;
+    width: 30%;
+    background: rgb(66,82,109);
+    background: linear-gradient(127deg, rgba(66,82,109,1) 0%, rgb(28, 49, 97) 47%, rgba(32,56,125,1) 100%);
+}
