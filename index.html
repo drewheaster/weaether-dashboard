@@ -36,14 +36,14 @@
                             <i class="fa-solid fa-wind weather-icons"></i>
                             <div class="card-details">
                                 <h3 class="card-title">Wind Speed</h3>
-                                <h3 id="wind-speed">12 mph</h3>
+                                <h3 id="wind-speed"></h3>
                             </div>
                         </div>
                         <div class="infocard">
                             <i class="fa-solid fa-smog weather-icons"></i>
                             <div class="card-details">
                                 <h3 class="card-title">Humidity</h3>
-                                <h3 id="humidity">52%</h3>
+                                <h3 id="humidity"></h3>
                             </div>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
                             <i class="fa-solid fa-cloud-rain weather-icons"></i>
                             <div class="card-details">
                                 <h3 class="card-title">Chance of Rain</h3>
-                                <h3 id="rain-chance">20%</h3>
+                                <h3 id="rain-chance"></h3>
                             </div>
                         </div>
                         <div class="infocard">
                             <i class="fa-solid fa-sun weather-icons"></i>
                             <div class="card-details">
                                 <h3 class="card-title">UV Index</h3>
-                                <h3 id="uv-index">3</h3>
+                                <h3 id="uv-index"></h3>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,6 @@
             <section class="forecast-container">
                 <h2 class="forecast-title">5-Day Forecast</h2>
                 <div id="cards-container" class="forecast-cards-container">
-                    <!-- Dynamically added cards go here in JS -->
                 </div>
             </section>
 
@@ -81,31 +80,23 @@
 
             <header class="today-data-header">
                 <h2 class="area-title"></h2>
-                <h2 class="current-time">12:30pm</h2>
+                <h2 id="current-time" class="current-time"></h2>
             </header>
 
             <section class="current-weather-container">
-                <div class="current-weather-icon-container">
-                    <i class="fa-solid fa-cloud-sun"></i>
+                <div id="current-weather-icon-container" class="current-weather-icon-container">
                 </div>
                 <div class="current-weather-info-container">
                     <h3 class="current-weather-temp"></h3>
-                    <h3 class="current-weather-conditions">Sunny</h3>
+                    <h3 class="current-weather-conditions"></h3>
                 </div>
             </section>
 
             <div class="current-weather-divider"></div>
 
-            <section class="chance-of-rain-container">
+            <section id="chance-of-rain-container" class="chance-of-rain-container">
                 <h4 class="chance-of-rain-title">Chance of Rain</h4>
-                <div class="chance-of-rain-graph">
-                    <div id="graph-line-1" class="graph-line">
-                        <h5 class="graph-time"></h5>
-                        <div class="graph-line-container">
-                            <div class="graph-line"></div>
-                        </div>
-                        <h5 class="graph-percentage"></h5>
-                    </div>
+                <div id="chance-of-rain-graph" class="chance-of-rain-graph">
                 </div>
             </section>
 

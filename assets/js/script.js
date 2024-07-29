@@ -5,10 +5,19 @@ const submitCityEl = $("form[id='city-input-field']");
 const submitCityInput = $("input[class='city-input']");
 const calendarDate = document.getElementById('calendar-date');
 const weekDay = document.getElementById('day-of-week');
+const currentTimeEl = document.getElementById('current-time');
 
 // Current Temp section fields
 const locationTitle = $("h2[class='area-title']");
+const forecastConditions = $("h3[class='current-weather-conditions']");
 const currentTempEl = $("h3[class='current-weather-temp']");
+const currentWindSpeedEl = $("h3[id='wind-speed']");
+const currentHumidityEl = $("h3[id='humidity']");
+const currentRainChanceEl = $("h3[id='rain-chance']");
+const currentUVEl = $("h3[id='uv-index']");
+const weatherIconContainer = document.getElementById('current-weather-icon-container');
+
+const rainChanceGraphCont = document.getElementById('chance-of-rain-graph');
 
 // 5 day forecast card fields
 const cardsCont = document.getElementById('cards-container');
@@ -18,12 +27,30 @@ const searchedCities = [];
 calendarDate.textContent = dayjs().format(`MMM, M YYYY`);
 weekDay.textContent = dayjs().format(`dddd`);
 
+const clock = () => {
+    currentTimeEl.textContent = dayjs().format('h:mm a');
+}
+clock();
+setInterval(clock, 1000);
+
 submitCityEl.on("submit", function(event) {
     event.preventDefault();
 
-    searchedCities.unshift(submitCityInput.val());
+    while(cardsCont.firstChild) {
+        cardsCont.removeChild(cardsCont.firstChild);
+    };
 
-    console.log(searchedCities)
+    while(rainChanceGraphCont.firstChild) {
+        rainChanceGraphCont.removeChild(rainChanceGraphCont.firstChild);
+    };
+
+    const cityEntry = submitCityInput.val().toLowerCase();
+
+    if (!searchedCities.includes(cityEntry)) {
+        searchedCities.unshift(cityEntry);
+    };
+
+    console.log(searchedCities);
 
     // Geocoder call to get lat/long from searched city input
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${submitCityInput.val()}&limit=1&appid=${apiKey}`)
@@ -33,28 +60,81 @@ submitCityEl.on("submit", function(event) {
             const lat = getCoords[0].lat;
             const lon = getCoords[0].lon;
 
+            submitCityInput.val('');
+
             // General/Current weather call
             fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
 
-                    const current = data.current
-                    const currentTemp = parseInt(current.temp)
+                    // Current weather data for searched city
+                    const current = data.current;
+                    const hourly = data.hourly;
+                    const currentTempText = parseInt(current.temp);
+                    const currentHumidityText = parseInt(current.humidity);
+                    const currentWindSpeedText = parseInt(current.wind_speed);
+                    const currentUVText = parseInt(current.uvi);
+                    const currentRainChanceText = parseInt(data.daily[0].pop * 100);
+                    const forecastConditionsText = current.weather[0].description;
+                    const currentWeatherIconId = current.weather[0].icon;
 
-                    locationTitle.text(submitCityInput.val());
-                    currentTempEl.text(`${currentTemp}° F`);
+                    const currentCity = searchedCities[0];
 
+                    const currentWeatherIcon = document.createElement('img')
+
+                    currentWeatherIcon.setAttribute('class', 'current-weather-icon');
+                    locationTitle.text(currentCity[0].toUpperCase() + searchedCities[0].slice(1));
+                    currentTempEl.text(`${currentTempText}° F`);
+                    currentWindSpeedEl.text(`${currentWindSpeedText} mph`);
+                    currentHumidityEl.text(`${currentHumidityText}%`);
+                    currentRainChanceEl.text(`${currentRainChanceText}%`);
+                    currentUVEl.text(`${currentUVText}`);
+                    forecastConditions.text(`${forecastConditionsText}`);
+
+                    weatherIconContainer.appendChild(currentWeatherIcon);
+
+                    currentWeatherIcon.setAttribute('src', `https://openweathermap.org/img/wn/${currentWeatherIconId}@2x.png`);
+
+                    for (i = 1; i < 5; i++) {
+                        const graphInfo = document.createElement('div');
+                        const graphTime = document.createElement('h5');
+                        const graphLineCont = document.createElement('div');
+                        const graphLine = document.createElement('div');
+                        const graphPercentage = document.createElement('h5');
+
+                        graphInfo.setAttribute('class' , 'graph-line');
+                        graphTime.setAttribute('class', 'graph-time');
+                        graphLineCont.setAttribute('class', 'graph-line-container');
+                        graphLine.setAttribute('class', 'graph-percentage-line');
+                        graphLine.setAttribute('style', `width: 0%`);
+                        graphPercentage.setAttribute('class', 'graph-percentage');
+
+                        rainChanceGraphCont.appendChild(graphInfo);
+                        graphInfo.appendChild(graphTime);
+                        graphInfo.appendChild(graphLineCont);
+                        graphInfo.appendChild(graphPercentage);
+                        graphLineCont.appendChild(graphLine);
+
+                        graphTime.textContent = dayjs.unix(hourly[i].dt).format(`h:mm a`);
+                        graphPercentage.textContent = `${hourly[i].pop * 100}%`;
+
+                        ((i) => {
+                            setTimeout(() => {
+                                graphLine.setAttribute('style', `width: ${hourly[i].pop * 100}%`);
+                            }, 300)
+                        })(i)
+                    }
                 })
 
             // 5 day forecast call
             fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`)
                 .then(response => response.json())
                 .then(fdforecast => {
-                    console.log("5 day forecast")
-                    console.log(fdforecast)
+                    console.log("5 day forecast");
+                    console.log(fdforecast);
 
-                    const forecastList = fdforecast.list
+                    const forecastList = fdforecast.list;
 
                     for(let i = 0; i < forecastList.length; i+=8) {
 
