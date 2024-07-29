@@ -40,6 +40,10 @@ submitCityEl.on("submit", function(event) {
         cardsCont.removeChild(cardsCont.firstChild);
     };
 
+    while(weatherIconContainer.firstChild) {
+        weatherIconContainer.removeChild(weatherIconContainer.firstChild);
+    };
+
     while(rainChanceGraphCont.firstChild) {
         rainChanceGraphCont.removeChild(rainChanceGraphCont.firstChild);
     };
