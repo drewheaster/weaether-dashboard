@@ -19,8 +19,8 @@
                     <h1 class="logo-title">Weatherly</h1>
                 </div>
                 <div class="date-container">
-                    <h2 class="calendar-date">Jan 4, 2022</h2>
-                    <h2 class="day-of-week">Thursday</h2>
+                    <h2 id="calendar-date" class="calendar-date"></h2>
+                    <h2 id="day-of-week" class="day-of-week">Thursday</h2>
                 </div>
                 <form id="city-input-field" class="search-input-container">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -68,117 +68,8 @@
 
             <section class="forecast-container">
                 <h2 class="forecast-title">5-Day Forecast</h2>
-                <div class="forecast-cards-container">
-                    <div id="forecast-card-1" class="forecast-card">
-                        <h2 class="card-calendar-date">01/04</h2>
-                        <div class="card-temp-details">
-                            <div id="dynamic-card-info" class="card-icon-container">
-                                <i class="fa-regular fa-sun"></i>
-                            </div>
-                            <h2 class="card-temp">70°F</h2>
-                        </div>
-                        <div class="forecast-card-divider"></div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-wind"></i>
-                            </div>
-                            <h2 class="card-info">18mph</h2>
-                        </div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-smog"></i>
-                            </div>
-                            <h2 class="card-info">57%</h2>
-                        </div>
-                    </div>
-                    <div id="forecast-card-2" class="forecast-card">
-                        <h2 class="card-calendar-date">01/04</h2>
-                        <div class="card-temp-details">
-                            <div id="dynamic-card-info" class="card-icon-container">
-                                <i class="fa-regular fa-sun"></i>
-                            </div>
-                            <h2 class="card-temp">70°F</h2>
-                        </div>
-                        <div class="forecast-card-divider"></div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-wind"></i>
-                            </div>
-                            <h2 class="card-info">18mph</h2>
-                        </div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-smog"></i>
-                            </div>
-                            <h2 class="card-info">57%</h2>
-                        </div>
-                    </div>
-                    <div id="forecast-card-3" class="forecast-card">
-                        <h2 class="card-calendar-date">01/04</h2>
-                        <div class="card-temp-details">
-                            <div id="dynamic-card-info" class="card-icon-container">
-                                <i class="fa-regular fa-sun"></i>
-                            </div>
-                            <h2 class="card-temp">70°F</h2>
-                        </div>
-                        <div class="forecast-card-divider"></div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-wind"></i>
-                            </div>
-                            <h2 class="card-info">18mph</h2>
-                        </div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-smog"></i>
-                            </div>
-                            <h2 class="card-info">57%</h2>
-                        </div>
-                    </div>
-                    <div id="forecast-card-4" class="forecast-card">
-                        <h2 class="card-calendar-date">01/04</h2>
-                        <div class="card-temp-details">
-                            <div id="dynamic-card-info" class="card-icon-container">
-                                <i class="fa-regular fa-sun"></i>
-                            </div>
-                            <h2 class="card-temp">70°F</h2>
-                        </div>
-                        <div class="forecast-card-divider"></div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-wind"></i>
-                            </div>
-                            <h2 class="card-info">18mph</h2>
-                        </div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-smog"></i>
-                            </div>
-                            <h2 class="card-info">57%</h2>
-                        </div>
-                    </div>
-                    <div id="forecast-card-5" class="forecast-card">
-                        <h2 class="card-calendar-date">01/04</h2>
-                        <div class="card-temp-details">
-                            <div id="dynamic-card-info" class="card-icon-container">
-                                <i class="fa-regular fa-sun"></i>
-                            </div>
-                            <h2 class="card-temp">70°F</h2>
-                        </div>
-                        <div class="forecast-card-divider"></div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-wind"></i>
-                            </div>
-                            <h2 class="card-info">18mph</h2>
-                        </div>
-                        <div class="card-info-details">
-                            <div class="card-icon-container">
-                                <i class="fa-solid fa-smog"></i>
-                            </div>
-                            <h2 class="card-info">57%</h2>
-                        </div>
-                    </div>
+                <div id="cards-container" class="forecast-cards-container">
+                    <!-- Dynamically added cards go here in JS -->
                 </div>
             </section>
 
@@ -215,27 +106,6 @@
                         </div>
                         <h5 class="graph-percentage"></h5>
                     </div>
-                    <div id="graph-line-2" class="graph-line">
-                        <h5 class="graph-time"></h5>
-                        <div class="graph-line-container">
-                            <div class="graph-line"></div>
-                        </div>
-                        <h5 class="graph-percentage"></h5>
-                    </div>
-                    <div id="graph-line-3" class="graph-line">
-                        <h5 class="graph-time"></h5>
-                        <div class="graph-line-container">
-                            <div class="graph-line"></div>
-                        </div>
-                        <h5 class="graph-percentage"></h5>
-                    </div>
-                    <div id="graph-line-4" class="graph-line">
-                        <h5 class="graph-time"></h5>
-                        <div class="graph-line-container">
-                            <div class="graph-line"></div>
-                        </div>
-                        <h5 class="graph-percentage"></h5>
-                    </div>
                 </div>
             </section>
 
@@ -251,8 +121,9 @@
 
         </aside>
 
+        <script src="https://kit.fontawesome.com/11a7843a2d.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="./assets/js/script.js"></script>
-        <script src="https://kit.fontawesome.com/11a7843a2d.js" crossorigin="anonymous"></script>
     </body>
 </html>
