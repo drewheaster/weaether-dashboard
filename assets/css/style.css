@@ -77,6 +77,38 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
+}
+
+#search-history-container {
+    opacity: 0;
+    height: fit-content;
+    width: 100%;
+    background-color: var(--light-grey);
+    border-radius: 0.5rem;
+    top: 3rem;
+    position: absolute;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.search-history-line {
+    width: 80%;
+    height: 2rem;
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    border-radius: 1rem;
+}
+
+.searched-city {
+    color: var(--grey);
+    margin-left: 1rem;
+    font-size: 85%;
 }
 
 .fa-magnifying-glass {
@@ -93,6 +125,10 @@ body {
     color: var(--grey);
     border: none;
     background-color: var(--light-grey);
+}
+
+.city-input:focus + #search-history-container {
+    opacity: 1;
 }
 
 .city-input:focus {

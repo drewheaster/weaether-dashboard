@@ -6,6 +6,7 @@ const submitCityInput = $("input[class='city-input']");
 const calendarDate = document.getElementById('calendar-date');
 const weekDay = document.getElementById('day-of-week');
 const currentTimeEl = document.getElementById('current-time');
+const searchHistoryCont = document.getElementById('search-history-container');
 
 // Current Temp section fields
 const locationTitle = $("h2[class='area-title']");
@@ -22,7 +23,7 @@ const rainChanceGraphCont = document.getElementById('chance-of-rain-graph');
 // 5 day forecast card fields
 const cardsCont = document.getElementById('cards-container');
 
-const searchedCities = [];
+let searchedCities = [];
 
 calendarDate.textContent = dayjs().format(`MMM, M YYYY`);
 weekDay.textContent = dayjs().format(`dddd`);
@@ -56,6 +57,30 @@ submitCityEl.on("submit", function(event) {
 
     console.log(searchedCities);
 
+    localStorage.setItem('searchHistory', JSON.stringify(searchedCities));
+
+    searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+
+    while(searchHistoryCont.lastChild) {
+        searchHistoryCont.removeChild(searchHistoryCont.lastChild);
+    };
+
+    searchHistory.forEach(city => {
+
+        const searchHistoryItemCont = document.createElement('div');
+        const searchHistoryItem = document.createElement('div');
+
+        searchHistoryItemCont.setAttribute('class', 'search-history-line');
+        searchHistoryItem.setAttribute('class', 'searched-city');
+        searchHistoryItem.setAttribute('style', 'cursor: pointer');
+
+        searchHistoryCont.appendChild(searchHistoryItemCont);
+        searchHistoryItemCont.appendChild(searchHistoryItem);
+
+        searchHistoryItem.textContent = city[0].toUpperCase() + city.slice(1);
+    });
+
+
     // Geocoder call to get lat/long from searched city input
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${submitCityInput.val()}&limit=1&appid=${apiKey}`)
         .then(response => response.json())
@@ -64,13 +89,10 @@ submitCityEl.on("submit", function(event) {
             const lat = getCoords[0].lat;
             const lon = getCoords[0].lon;
 
-            submitCityInput.val('');
-
             // General/Current weather call
             fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
 
                     // Current weather data for searched city
                     const current = data.current;
@@ -83,12 +105,12 @@ submitCityEl.on("submit", function(event) {
                     const forecastConditionsText = current.weather[0].description;
                     const currentWeatherIconId = current.weather[0].icon;
 
-                    const currentCity = searchedCities[0];
+                    const currentCity = submitCityInput.val();
 
                     const currentWeatherIcon = document.createElement('img')
 
                     currentWeatherIcon.setAttribute('class', 'current-weather-icon');
-                    locationTitle.text(currentCity[0].toUpperCase() + searchedCities[0].slice(1));
+                    locationTitle.text(currentCity[0].toUpperCase() + submitCityInput.val().slice(1));
                     currentTempEl.text(`${currentTempText}° F`);
                     currentWindSpeedEl.text(`${currentWindSpeedText} mph`);
                     currentHumidityEl.text(`${currentHumidityText}%`);
@@ -121,7 +143,7 @@ submitCityEl.on("submit", function(event) {
                         graphLineCont.appendChild(graphLine);
 
                         graphTime.textContent = dayjs.unix(hourly[i].dt).format(`h:mm a`);
-                        graphPercentage.textContent = `${hourly[i].pop * 100}%`;
+                        graphPercentage.textContent = `${parseInt(hourly[i].pop * 100)}%`;
 
                         ((i) => {
                             setTimeout(() => {
@@ -135,8 +157,6 @@ submitCityEl.on("submit", function(event) {
             fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`)
                 .then(response => response.json())
                 .then(fdforecast => {
-                    console.log("5 day forecast");
-                    console.log(fdforecast);
 
                     const forecastList = fdforecast.list;
 
