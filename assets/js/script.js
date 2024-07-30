@@ -55,8 +55,6 @@ submitCityEl.on("submit", function(event) {
         searchedCities.unshift(cityEntry);
     };
 
-    console.log(searchedCities);
-
     localStorage.setItem('searchHistory', JSON.stringify(searchedCities));
 
     searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
