@@ -82,7 +82,7 @@ submitCityEl.on("submit", function(event) {
 
 
     // Geocoder call to get lat/long from searched city input
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${submitCityInput.val()}&limit=1&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${submitCityInput.val()}&limit=1&appid=${apiKey}`)
         .then(response => response.json())
         .then(getCoords => {
 
